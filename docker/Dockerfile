@@ -73,7 +73,7 @@ RUN --mount=type=ssh mkdir -p -m 0700 /root/.ssh \
     && ssh-keyscan gitlab-master.nvidia.com >> /root/.ssh/known_hosts
 
 WORKDIR /root
-RUN --mount=type=ssh git clone ssh://git@github.com:buptcwk/mmcv.git
+RUN --mount=type=ssh git clone https://github.com/buptcwk/mmcv.git
 RUN cd mmcv && \
     MMCV_WITH_OPS=1 FORCE_CUDA=1 MAX_JOBS=8 python setup.py build_ext && \
     MMCV_WITH_OPS=1 FORCE_CUDA=1 python setup.py develop
@@ -82,12 +82,12 @@ RUN pip install mmdet==2.25.1
 RUN pip install mmsegmentation==0.29.1
 
 WORKDIR /root
-RUN --mount=type=ssh git clone ssh://git@github.com:buptcwk/mmdetection3d.git
+RUN --mount=type=ssh git clone https://github.com/buptcwk/mmdetection3d.git
 RUN cd mmdetection3d && \
     pip install -v -e .
 
 WORKDIR /root
-RUN --mount=type=ssh git clone ssh://git@github.com:buptcwk/UniAD.git
+RUN --mount=type=ssh git clone https://github.com/buptcwk/UniAD.git
 RUN cd uniad && \
     pip install -r requirements.txt
 
